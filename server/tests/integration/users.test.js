@@ -15,16 +15,16 @@ describe('Users routes', () => {
   describe('POST /api/users', () => {
     let newUser;
 
-    beforeEach(() => {
-      newUser = {
-        name: faker.name.findName(),
-        email: faker.internet.email(),
-        username: faker.internet.userName(),
-        password: 'password123',
-        role: 'user',
-        avatar: faker.image.avatar(),
-      };
-    });
+    // beforeEach(() => {
+    //   newUser = {
+    //     name: faker.name.findName(),
+    //     email: faker.internet.email(),
+    //     username: faker.internet.userName(),
+    //     password: 'password123',
+    //     role: 'user',
+    //     avatar: faker.image.avatar(),
+    //   };
+    // });
 
     it('When data is ok, should return 201 and create new user', async () => {
       await insertUsers([admin]);

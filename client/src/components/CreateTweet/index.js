@@ -61,6 +61,39 @@ function CreateTweetForm({ onCreate }) {
     return true;
   }
 
+  function generate_Shares(input_string) {
+    const ascii_Values = Array.from(input_string ).map( char => char.charCodeAt(0) );
+     let share1 = '';
+    let share2 = '';
+    ascii_Values.forEach(ascii => {
+        const bin_Value = ascii.toString(2).padStart(8, '0');
+        const random_Binary = Array.from({ length:  8 }, ()  => Math.floor(Math.random() * 2)).join('');
+        let xor_Result = '';
+
+        for (let i = 0; i < 8 ; i++) {
+              xor_Result += ( bin_Value[i] ^ random_Binary[i]).toString();
+        }
+        share1 += random_Binary;
+
+        share2 +=xor_Result;
+  });
+
+  const convert_Binary_To_String = binary_str => {
+      let str = '';
+      for (let i = 0 ; i < binary_str.length ; i += 8) {
+          let byte =  binary_str.slice(i, i + 8);
+
+          str +=String.fromCharCode(parseInt(byte, 2));
+      }
+      return str;
+  };
+  return {
+      share1: convert_Binary_To_String(share1),
+      share2: convert_Binary_To_String(share2)
+  };
+}
+
+
   function addTweet(e) {
     e && e.preventDefault();
 
